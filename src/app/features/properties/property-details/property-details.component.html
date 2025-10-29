@@ -1,0 +1,207 @@
+<div *ngIf="loading" class="flex justify-center my-10">
+  <mat-spinner diameter="40"></mat-spinner>
+</div>
+
+
+
+
+
+    <!-- Page Title -->
+    <div class="page-title">
+       <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1 class="heading-title">{{ property?.title }}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">{{ property?.title }}</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Property Details Section -->
+    <section *ngIf="!loading && property" id="property-details" class="property-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+
+            <!-- Property Gallery -->
+            <div class="property-gallery" data-aos="fade-up" data-aos-delay="200">
+              <div class="main-image-container image-zoom-container">
+                <img
+                      id="main-product-image"
+                      *ngIf="property.media && property.media.length > 0; else defaultImage"
+                      [src]="property.media[0].mediaUrl"
+                      [attr.data-zoom]="property.media[0].mediaUrl"
+                      alt="{{ property?.title }}"
+                      class="img-fluid main-property-image"
+                    />
+
+                    <ng-template #defaultImage>
+                      <img
+                        id="main-product-image"
+                         [src]="property.thumbnailUrl || '/assets/default.jpg'"
+                        alt="Default Property Image"
+                        class="img-fluid main-property-image"
+                      />
+                    </ng-template>
+                <div class="image-nav-buttons"  *ngIf="property.media && property.media.length > 0">
+                  <button class="image-nav-btn prev-image" type="button">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button class="image-nav-btn next-image" type="button">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div
+                  class="thumbnail-gallery thumbnail-list"
+                  *ngIf="property.media && property.media.length > 1"
+                >
+                  <div
+                    class="thumbnail-item"
+                    *ngFor="let m of property.media; let i = index"
+                    [class.active]="i === 0"
+                    [attr.data-image]="m.mediaUrl"
+                  >
+                    <img
+                      [src]="m.mediaUrl"
+                      class="img-fluid"
+                    />
+                  </div>
+                </div><!-- End Property Gallery -->
+</div>
+            <!-- Property Description -->
+            <div class="property-description" data-aos="fade-up" data-aos-delay="300">
+              <h3>About This Property</h3>
+              <p>{{ property.description }}</p>
+            </div><!-- End Property Description -->
+
+            <!-- Amenities -->
+            <div class="property-amenities" data-aos="fade-up" data-aos-delay="400">
+              <h3>Amenities &amp; Features</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="features-list">
+                    <li><i class="bi bi-check-circle"></i>Hardwood Floors</li>
+                    <li><i class="bi bi-check-circle"></i>Updated Kitchen</li>
+                    <li><i class="bi bi-check-circle"></i>Walk-in Closets</li>
+                    <li><i class="bi bi-check-circle"></i>Central Air Conditioning</li>
+                    <li><i class="bi bi-check-circle"></i>Fireplace</li>
+                    <li><i class="bi bi-check-circle"></i>High Ceilings</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="features-list">
+                    <li><i class="bi bi-check-circle"></i>2-Car Garage</li>
+                    <li><i class="bi bi-check-circle"></i>Swimming Pool</li>
+                    <li><i class="bi bi-check-circle"></i>Garden</li>
+                    <li><i class="bi bi-check-circle"></i>Patio/Deck</li>
+                    <li><i class="bi bi-check-circle"></i>Security System</li>
+                    <li><i class="bi bi-check-circle"></i>Sprinkler System</li>
+                  </ul>
+                </div>
+              </div>
+            </div><!-- End Amenities -->
+
+            <!-- Map Section -->
+            <div class="property-map" data-aos="fade-up" data-aos-delay="500">
+              <h3>Location</h3>
+              <div class="map-container">
+                <div id="map"></div>
+              </div>
+              <div class="location-details">
+                <h4>Neighborhood Information</h4>
+                <p>Located in the heart of downtown, this property offers easy access to shopping, dining, and entertainment. Public transportation and major highways are just minutes away.</p>
+              </div>
+            </div><!-- End Map Section -->
+
+          </div>
+
+          <div class="col-lg-4">
+
+            <!-- Property Overview -->
+            <div class="property-overview sticky-top" data-aos="fade-up" data-aos-delay="200">
+              <div class="price-tag">₹{{ property.price | number }}</div>
+              <span class="property-status me-1">{{ property.propertyType }}</span> 
+              <span class="property-status">Available from: {{ property.availableFrom | date }}</span>
+              
+              
+
+              <div class="property-address">
+                <h4>{{ property.address }}</h4>
+                <p>{{ property.city }}, {{ property.state }}</p>
+              </div>
+
+              <div class="property-stats">
+                <div class="stat-item">
+                  <i class="bi bi-house"></i>
+                  <div>
+                    <span class="value">4</span>
+                    <span class="label">Bedrooms</span>
+                  </div>
+                </div>
+                <div class="stat-item">
+                  <i class="bi bi-droplet"></i>
+                  <div>
+                    <span class="value">3</span>
+                    <span class="label">Bathrooms</span>
+                  </div>
+                </div>
+                <div class="stat-item">
+                  <i class="bi bi-rulers"></i>
+                  <div>
+                    <span class="value">2,450</span>
+                    <span class="label">Sq Ft</span>
+                  </div>
+                </div>
+               
+                <div class="stat-item">
+                  <i class="bi bi-calendar"></i>
+                  <div>
+                    <span class="value">2018</span>
+                    <span class="label">Year Built</span>
+                  </div>
+                </div>
+               
+              </div>
+
+              <!-- Agent Info -->
+       
+
+              <!-- Social Share -->
+              <div class="social-share">
+                <h5>Share This Property</h5>
+                <div class="share-buttons">
+                  <a href="#" class="share-btn facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="share-btn twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="share-btn whatsapp"><i class="bi bi-whatsapp"></i></a>
+                  <a href="#" class="share-btn email"><i class="bi bi-envelope"></i></a>
+                  <a href="#" class="share-btn print"><i class="bi bi-printer"></i></a>
+                </div>
+              </div><!-- End Social Share -->
+
+            </div><!-- End Property Overview -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Property Details Section -->
+
+
+
+

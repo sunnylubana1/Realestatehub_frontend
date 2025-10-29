@@ -1,0 +1,16 @@
+img {
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.fixed {
+  backdrop-filter: blur(4px);
+}
+#map {
+  height: 320px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
