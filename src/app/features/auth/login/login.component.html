@@ -1,0 +1,89 @@
+<div class="service-details">
+  <div class="service-sidebar">
+    <div class="quick-contact-card mb-0">
+      <div class="dialog-close" (click)="closeDialog()">×</div>
+      <div class="contact-header">
+        <h4>Login</h4>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="needs-validation">
+        <div class="form-group">
+          <input formControlName="emailOrPhone" class="form-control" placeholder="E-mail/Mobile Number" required="" />
+        </div>
+        <div class="form-group" style="position: relative;">
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" class="form-control"
+            placeholder="Password" required="" />
+          <i class="bi" [ngClass]="hidePassword ? 'bi-eye' : 'bi-eye-slash'" (click)="hidePassword = !hidePassword"
+            class="toggle-eye"></i>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="loading">
+          {{ loading ? 'Signing In...' : 'Sign In' }}
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+      <div class="divider text-center my-2">or continue with</div>
+
+      <div class="d-flex justify-content-center mt-3">
+
+        <!-- Google -->
+        <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 me-3 fw-bolder" (click)="googleLogin()">
+          <i class="bi bi-google" style="font-size: 1.4rem;"></i>
+          Google
+        </button>
+        <!-- Facebook -->
+        <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2 fw-bolder" (click)="facebookLogin()">
+          <i class="bi bi-facebook" style="font-size: 1.4rem;"></i> Facebook
+        </button>
+
+      </div>
+      <p class="text-center mt-3">
+          Don’t have an account?
+          <a href="javascript:void(0);" class="text-decoration-underline" (click)="openRegister()">Sign up</a>
+          </p>
+    </div>
+  </div>
+</div>
+<!-- 
+
+<div class="justify-content-center">
+  <mat-card class="auth-card p-4 shadow-lg">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Email or Phone</mat-label>
+        <input matInput formControlName="emailOrPhone" />
+        <mat-error *ngIf="form.get('emailOrPhone')?.invalid">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-4">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="w-100 mb-3" [disabled]="loading">
+        {{ loading ? 'Signing In...' : 'Sign In' }}
+      </button>
+      <div class="text-danger text-center mb-3" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </form>
+
+    <div class="divider text-center">or continue with</div>
+
+    <div class="d-flex justify-content-center mt-3">
+      <button mat-stroked-button color="warn" (click)="googleLogin()" class="me-3">
+        <mat-icon>google</mat-icon> Google
+      </button>
+      <button mat-stroked-button color="primary" (click)="facebookLogin()">
+        <mat-icon>facebook</mat-icon> Facebook
+      </button>
+    </div>
+
+    <p class="text-center mt-4">
+      Don't have an account?
+      <a routerLink="/auth/register">Sign up</a>
+    </p>
+  </mat-card>
+</div> -->

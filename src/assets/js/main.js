@@ -227,17 +227,37 @@
     
   }
 
+  function ResetFormsValidations(){
+     const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.classList.remove('was-validated')
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+  }
+
 window.globalInitializer = function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   
   setTimeout(() => {
+    console.log("globalInitilizer");
   new PureCounter();  
   initSwiper();
   aosInit();
   productDetailFeatures();
-   
+   ResetFormsValidations();
   },1000);
 
 }
 
 })();
+
+
+

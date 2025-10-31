@@ -1,0 +1,33 @@
+/* Reuse your existing header/navmenu styling */
+
+.navmenu {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 1199px) {
+  .navmenu {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .navmenu.navmenu-open {
+    max-height: 400px; /* adjust based on your nav height */
+    opacity: 1;
+  }
+
+  .navmenu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 1rem 0;
+    border-radius: 8px;
+  }
+}
+
+
+
+.auth-dialog .mat-mdc-dialog-surface {
+  backdrop-filter: blur(6px);
+}

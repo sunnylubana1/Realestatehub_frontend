@@ -1,0 +1,32 @@
+.auth-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.divider {
+  position: relative;
+  font-size: 14px;
+  color: #888;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: #ccc;
+}
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}
+:host {
+  display: block;
+  max-height: 90vh;
+  overflow-y: auto;
+}

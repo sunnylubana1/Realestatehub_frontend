@@ -9213,3 +9213,62 @@ section,
     max-width: 1320px !important;
   }
 }
+
+.auth-dialog .mat-mdc-dialog-container {
+  border-radius: 16px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .auth-dialog .mat-mdc-dialog-container {
+    margin: 10px;
+    border-radius: 12px !important;
+  }
+}
+.centered-dialog .mat-mdc-dialog-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important; /* ensures full screen vertical centering */
+  margin: 0 auto;
+}
+
+.centered-dialog .mat-mdc-dialog-surface {
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cdk-overlay-container{
+    z-index: 2500 !important;
+}
+.toggle-eye {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d; /* Bootstrap gray */
+  font-size: 1.2rem;
+}
+
+.toggle-eye:hover {
+  color: #000; /* Darker on hover */
+}
+ .dialog-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 22px;
+      color: #555;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s ease-in-out;
+      user-select: none;
+    }
+    .dialog-close:hover {
+      color: #000;
+    }

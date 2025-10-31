@@ -1,0 +1,67 @@
+.auth-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.divider {
+  position: relative;
+  font-size: 14px;
+  color: #888;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}
+:host {
+  display: block;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+:root {
+  --accent-color: #007bff; /* your main color */
+}
+
+.custom-toggle {
+  border: 2px solid transparent;
+  border-color: linear-gradient(135deg, var(--accent-color),
+    color-mix(in srgb, var(--accent-color), #000 15%));
+  background: white;
+  color: var(--accent-color);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Proper gradient border */
+.custom-toggle {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, var(--accent-color),
+      color-mix(in srgb, var(--accent-color), #000 15%)) border-box;
+}
+
+/* Selected (active) state */
+.btn-check:checked + .custom-toggle {
+  background: linear-gradient(135deg, var(--accent-color),
+    color-mix(in srgb, var(--accent-color), #000 15%));
+  color: white;
+  border-color: transparent;
+}
+
+/* Hover effect */
+.custom-toggle:hover {
+  filter: brightness(0.95);
+}

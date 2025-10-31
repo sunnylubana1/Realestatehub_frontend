@@ -7,7 +7,7 @@ import { PropertyDto } from '../models/property.model';
 
 @Injectable({ providedIn: 'root' })
 export class PropertyService {
-   private baseUrl = `${environment.apiUrl}/api`;
+  
   constructor(private http: HttpClient) {}
 
   list(query: any): Observable<{ items: PropertyDto[] } | PropertyDto[]> {
@@ -16,10 +16,10 @@ export class PropertyService {
       const v = query[k];
       if (v !== undefined && v !== null && v !== '') params = params.set(k, v);
     });
-    return this.http.get<{ items: PropertyDto[] } | PropertyDto[]>(`${environment.apiBaseUrl}/properties`, { params });
+    return this.http.get<{ items: PropertyDto[] } | PropertyDto[]>(`${environment.apiUrl}/properties`, { params });
   }
   getById(id: string) {
-  return this.http.get<PropertyDto>(`${environment.apiBaseUrl}/properties/${id}`);
+  return this.http.get<PropertyDto>(`${environment.apiUrl}/properties/${id}`);
 }
 getFiltered(listingType?: string, search?: string) {
   const params: any = {};
@@ -28,7 +28,6 @@ getFiltered(listingType?: string, search?: string) {
   if (search) params.search = search;
 
   const query = new URLSearchParams(params).toString();
-
-  return this.http.get<any[]>(`${this.baseUrl}/properties${query ? '?' + query : ''}`);
+  return this.http.get<any[]>(`${environment.apiUrl}/properties${query ? '?' + query : ''}`);
 }
 }

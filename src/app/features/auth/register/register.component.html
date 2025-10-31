@@ -1,0 +1,88 @@
+<div class="service-details">
+  <div class="service-sidebar">
+    <div class="quick-contact-card mb-0">
+      <div class="dialog-close" (click)="closeDialog()">×</div>
+      <div class="contact-header">
+        <h4>Create Account</h4>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="needs-validation">
+        <div class="form-group">
+          <input formControlName="name" class="form-control" placeholder="Full Name" required="" />
+        </div>
+        <div class="form-group">
+          <input formControlName="email" class="form-control" placeholder="E-mail" required="" />
+        </div>
+        <div class="form-group">
+          <input formControlName="phone" class="form-control" placeholder="Phone Number" />
+        </div>
+        <div class="form-group" style="position: relative;">
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" class="form-control"
+            placeholder="Password" required="" />
+          <i class="bi" [ngClass]="hidePassword ? 'bi-eye' : 'bi-eye-slash'" (click)="hidePassword = !hidePassword"
+            class="toggle-eye"></i>
+        </div>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" formControlName="isAgent" id="Customer" value="false" autocomplete="off" checked/>
+          <label class="btn custom-toggle" for="Customer">Customer</label>
+
+          <input type="radio" class="btn-check" formControlName="isAgent" id="Agent" value="true" autocomplete="off"/>
+          <label class="btn custom-toggle" for="Agent">Agent</label>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="loading">
+           {{ loading ? 'Creating...' : 'Sign Up' }}
+        </button>
+        <div class="text-success text-center" *ngIf="successMsg">{{ successMsg }}</div>
+      <div class="text-danger text-center" *ngIf="errorMsg">{{ errorMsg }}</div>
+      </form>
+ 
+      <p class="text-center mt-3">
+          Already have an account?
+          <a href="javascript:void(0);" class="text-decoration-underline" (click)="openLogin()">Sign in</a>
+          </p>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="d-flex justify-content-center">
+  <mat-card class="auth-card p-4 shadow-lg">
+    <h2 class="text-center mb-4">Create Account 🏡</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-4">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+    <mat-checkbox formControlName="isAgent">Register as Agent</mat-checkbox>
+
+
+      <button mat-raised-button color="primary" class="w-100 mb-3 mt-2" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Sign Up' }}
+      </button>
+
+      <div class="text-success text-center" *ngIf="successMsg">{{ successMsg }}</div>
+      <div class="text-danger text-center" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </form>
+
+    <p class="text-center mt-3">
+      Already have an account?
+      <a routerLink="/auth/login">Sign in</a>
+    </p>
+  </mat-card>
+</div> -->

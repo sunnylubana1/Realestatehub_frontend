@@ -28,6 +28,7 @@ export class PropertyListComponent implements OnChanges {
 
   loadProperties() {
     this.loading = true;
+    console.log("load property hit");
     this.propertyService.getFiltered(this.filterType, this.searchText).subscribe({
       next: (res: any) => {
         this.properties = res || [];
